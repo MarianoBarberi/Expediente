@@ -21,7 +21,7 @@ class MainController {
   async getCar(req, res) {
     const { id } = req.params;
     console.log("Get car");
-    var sql = `SELECT * FROM cars WHERE id = ?;`;
+    var sql = `SELECT * FROM car WHERE id = ?;`;
     mysql.query(sql, [id], (error, data, fields) => {
       if (error) {
         res.status(500);
@@ -49,6 +49,61 @@ class MainController {
         var client = data[0];
         res.json({
           client,
+        });
+      }
+    });
+  }
+
+  async addCar(req, res) {
+    const { name, year_of_car, color, km, comments, client_id } = req.body;
+    console.log("Add car");
+    var sql = `INSERT INTO cars (name, year_of_car, color, km, comments, client_id) VALUES (?, ?, ?, ?, ?, ?);`;
+    mysql.query(sql, [name, year_of_car, color, km, comments, client_id], (error, data, fields) => {
+      if (error) {
+        res.status(500);
+        res.send(error.message);
+      } else {
+        console.log(data);
+        var car = data[0];
+        res.json({
+          car,
+        });
+      }
+    });
+  }
+
+  async editCar(req, res) {
+    const { id } = req.params;
+    const { name, year_of_car, color, km, comments, client_id } = req.body;
+    console.log("Edit car");
+    var sql = `UPDATE cars SET name = ?, year_of_car = ?, color = ?, km = ?, comments = ?, client_id = ? WHERE id = ?;`;
+    mysql.query(sql, [name, year_of_car, color, km, comments, client_id, id], (error, data, fields) => {
+      if (error) {
+        res.status(500);
+        res.send(error.message);
+      } else {
+        console.log(data);
+        var car = data[0];
+        res.json({
+          car,
+        });
+      }
+    });
+  }
+
+  async deleteCar(req, res) {
+    const { id } = req.params;
+    console.log("Delete car");
+    var sql = `DELETE FROM cars WHERE id = ?;`;
+    mysql.query(sql, [id], (error, data, fields) => {
+      if (error) {
+        res.status(500);
+        res.send(error.message);
+      } else {
+        console.log(data);
+        var car = data[0];
+        res.json({
+          car,
         });
       }
     });

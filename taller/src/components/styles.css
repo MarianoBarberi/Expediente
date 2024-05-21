@@ -1,0 +1,170 @@
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+
+.all{   
+    width: 80%;
+    margin: 0 auto;
+}
+
+    .titleDiv{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+.titleDiv button{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .center{
+    text-align: center;
+    width: 0px;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  
+  .styled-table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+    .styled-table tbody tr:hover {
+        background-color: #aaaaaa;
+    }
+  
+  .table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+  }
+  
+  .search-container input[type=text] {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .smaller-search-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .search-input {
+    width: 20%;
+  }
+  
+  .dltBtn{
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .dltBtn:hover {
+    background-color: #da190b;
+  }
+  
+  .edtBtn{
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .edtBtn:hover {
+    background-color: #005f6b;
+  }
+  
+  .addBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .addBtn:hover {
+    background-color: #45a049;
+  }
+
+  .link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+  }
+
+  .modal{
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content{
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-content input, .but {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .dltBtn2{
+    width: 10%;
+    height: fit-content;
+    margin-right:  20px;
+  }
+
+  .modalTitle{
+    display: flex;
+    align-items: center;
+  }
