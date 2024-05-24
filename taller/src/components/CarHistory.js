@@ -152,7 +152,11 @@ const CarHistory = () => {
 return (
     <div className='all'>
       <div className='titleDiv'>
-        <button onClick={() => window.history.back()}>Back</button>
+        <a href={`/clients/${id}`} className='link'>
+          <button>
+          Back 
+          </button>
+        </a>
       </div>
         <h2>Historial de {carName}</h2>
         <h3 style={{color:'gray'}}>Carro de {clientName} </h3>

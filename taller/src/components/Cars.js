@@ -178,7 +178,11 @@ const Cars = () => {
   return (
     <div className='all'>
       <div className='titleDiv'>
-        <button onClick={() => window.history.back()}>Back</button>
+        <a href={`/clients`} className='link'>
+          <button>
+          Back 
+          </button>
+        </a>
       </div>
         <h2>Carros de {clientName}</h2>
 

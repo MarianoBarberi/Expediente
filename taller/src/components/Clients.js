@@ -126,7 +126,11 @@ const Clients = () => {
   return (
     <div className="all">
       <div className="titleDiv">
-        <button onClick={() => window.history.back()}>Back</button>
+        <a href={`/`} className='link'>
+          <button>
+          Back 
+          </button>
+        </a>
       </div>
       <h2>Clientes</h2>
       <div className="search-container">
