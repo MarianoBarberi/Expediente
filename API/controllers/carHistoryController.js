@@ -2,21 +2,21 @@ const mysql = require("../database/db");
 
 class MainController {
   async getAllCarHistoryOfCar(req, res) {
-    console.log("get all car history of car");
-    var sql = `CALL GetCarHistory(?);`;
-    mysql.query(sql, [req.params.id], (error, data, fields) => {
-      if (error) {
-        res.status(500);
-        res.send(error.message);
-      } else {
-        console.log(data);
-        var carHistory = data[0];
-        res.json({
-          carHistory,
-        });
-      }
-    });
-  }
+        console.log("get all car history of car");
+        const sql = `CALL GetCarHistory(?);`;
+
+        try {
+            const connection = await db.getConnection();
+            const [data] = await connection.execute(sql, [req.params.id]);
+            connection.end();
+
+            console.log(data);
+            const carHistory = data[0];
+            res.json({ carHistory });
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
+    }
 
   async getCarName(req, res) {
     const { id } = req.params;
