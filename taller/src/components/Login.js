@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setError(null); // Clear any previous errors
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://expediente.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const Login = () => {
         const data = await response.json();
         if (data.token) {
           login(data.token);
-          navigate('/clients');
+          navigate('/home');
         } else {
           setError('Token not provided by the server');
         }

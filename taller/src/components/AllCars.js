@@ -291,6 +291,7 @@ const AllCars = () => {
                 }
                 {modalType !== 'delete' && (
                   <>
+                  <h2 style={{marginLeft:'auto', color:'gray'}}>{newCar.isInTaller ? 'En taller' : 'Fuera de taller'}</h2>
                   <input
                     type="checkbox"
                     placeholder="Esta en taller"

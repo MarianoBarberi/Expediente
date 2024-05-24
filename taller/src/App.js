@@ -6,18 +6,16 @@ import Login from './components/Login';
 import Cars from './components/Cars';
 import CarHistory from './components/CarHistory';
 import AllCars from './components/AllCars';
+import Home from './components/Home';
 
 function App() {
   const { isLoggedIn } = useAuth();
-
-  console.log('isLoggedIn:', isLoggedIn);
-  console.log('localStorage.getItem:', localStorage.getItem('token'));
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/clients/:id" element={<Cars />} />
           <Route path="/clients/:id/:carId" element={<CarHistory />} />

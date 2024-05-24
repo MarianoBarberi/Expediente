@@ -246,6 +246,7 @@ const Cars = () => {
                 {modalType === 'delete' && <h2>Eliminar {newCar.name}</h2>}
                 {modalType !== 'delete' && (
                   <>
+                  <h2 style={{marginLeft:'auto', color:'gray'}}>{newCar.isInTaller ? 'En taller' : 'Fuera de taller'}</h2>
                   <input
                     type="checkbox"
                     placeholder="Esta en taller"

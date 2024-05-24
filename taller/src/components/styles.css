@@ -133,6 +133,20 @@
     width: fit-content;
   }
 
+  .link3{
+    width: fit-content;
+    padding: 20px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    background-color: #ffffff;
+    width: 80px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+
   .modal{
     position: fixed;
     z-index: 1;
