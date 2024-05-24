@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://expediente.onrender.com",
   "description": "",
   "main": "index.js",
   "scripts": {
