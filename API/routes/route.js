@@ -2,6 +2,7 @@ const express = require('express');
 const ClientsController = require('../controllers/clientsController');
 const CarsController = require('../controllers/carsController');
 const carHistoryController = require('../controllers/carHistoryController');
+const userController = require('../controllers/usersController');
 const router = express.Router();
 
 router.get('/getAllClients', ClientsController.getAllClients);
@@ -21,6 +22,8 @@ router.get('/getCarName/:id', carHistoryController.getCarName);
 router.post('/addCarHistory', carHistoryController.addCarHistory);
 router.put('/editCarHistory/:id', carHistoryController.editCarHistory);
 router.delete('/deleteCarHistory/:id', carHistoryController.deleteCarHistory);
+
+router.post('/login', userController.loginUser);
 
 module.exports = router;
 
