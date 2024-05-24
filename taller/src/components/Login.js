@@ -9,8 +9,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // Perform actual login logic here
-      // For example, send a request to your backend to verify credentials
       const response = await fetch('https://expediente.onrender.com/api/login', {
         method: 'POST',
         headers: {
@@ -18,13 +16,16 @@ const Login = () => {
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
       if (response.ok) {
         // Assuming your backend returns a token upon successful login
         const data = await response.json();
-        const token = data.token;
-        // Call login with the token
-        login(token);
+        if (data.token) {
+          // Call login with the token
+          login(data.token);
+        } else {
+          setError('Token not provided by the server');
+        }
       } else {
         setError('Invalid username or password');
       }
@@ -33,6 +34,7 @@ const Login = () => {
       setError('Login failed. Please try again later.');
     }
   };
+  
 
   return (
     <div>
