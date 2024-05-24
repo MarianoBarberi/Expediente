@@ -178,7 +178,7 @@ const Cars = () => {
   return (
     <div className='all'>
       <div className='titleDiv'>
-        <a href={`/clients`} className='link'>
+        <a href={`/clients`} className='link link2'>
           <button>
           Back 
           </button>

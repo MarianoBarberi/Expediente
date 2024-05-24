@@ -152,7 +152,7 @@ const CarHistory = () => {
 return (
     <div className='all'>
       <div className='titleDiv'>
-        <a href={`/clients/${id}`} className='link'>
+        <a href={`/clients/${id}`} className='link link2'>
           <button>
           Back 
           </button>

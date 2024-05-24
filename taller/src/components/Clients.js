@@ -126,7 +126,7 @@ const Clients = () => {
   return (
     <div className="all">
       <div className="titleDiv">
-        <a href={`/`} className='link'>
+        <a href={`/`} className='link link2'>
           <button>
           Back 
           </button>

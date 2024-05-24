@@ -129,6 +129,10 @@
     cursor: pointer;
   }
 
+  .link2{
+    width: fit-content;
+  }
+
   .modal{
     position: fixed;
     z-index: 1;

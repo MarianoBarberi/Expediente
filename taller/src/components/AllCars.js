@@ -176,7 +176,7 @@ const AllCars = () => {
     return (
         <div className='all'>
       <div className='titleDiv'>
-        <a href='/' className='link' style = {{width:''}}>
+        <a href='/' className='link link2'>
           <button>
           Back 
           </button>
