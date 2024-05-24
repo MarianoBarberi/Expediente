@@ -23,11 +23,6 @@ const AllCars = () => {
     const [modalType, setModalType] = useState('');
     const [selectedClient, setSelectedClient] = useState(null);
 
-    const handleAdd = () => {
-      setModalType('add');
-      setModalOpen(true);
-    };
-
     const handleEdit = (carId) => {
       setModalType('edit');
       setSelectedClient(carId);
@@ -200,7 +195,6 @@ const AllCars = () => {
                 <option key={car.id} value={car.name} />
               ))}
             </datalist>
-            <button className='addBtn' onClick={handleAdd}>Añadir</button>
           </div>
         </div>
         <div className='navigation'>

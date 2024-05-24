@@ -13,6 +13,6 @@ app.get('/api', (req, res) => {
     res.json({ "message": "mundo"});
 });
 
-const port = 5000;
-app.listen(port, () => console.log('Listening on port ' + port));
-
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
