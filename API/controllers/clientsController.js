@@ -38,10 +38,10 @@ class MainController {
   }
 
   async addClient(req, res) {
-    const { name, last_time_date } = req.body;
+    const { name, last_time_date, phone } = req.body;
     console.log("Add client");
-    var sql = `INSERT INTO client (name, last_time_date) VALUES (?, ?);`;
-    mysql.query(sql, [name, last_time_date], (error, data, fields) => {
+    var sql = `INSERT INTO client (name, last_time_date, phone) VALUES (?, ?, ?);`;
+    mysql.query(sql, [name, last_time_date, phone], (error, data, fields) => {
       if (error) {
       res.status(500);
       res.send(error.message);
@@ -56,11 +56,11 @@ class MainController {
   }
 
   async editClient(req, res) {
-    const { name, last_time_date } = req.body;
+    const { name, last_time_date, phone } = req.body;
     const { id } = req.params;
     console.log("Edit client");
-    var sql = `UPDATE client SET name = ?, last_time_date = ? WHERE id = ?;`;
-    mysql.query(sql, [name, last_time_date, id], (error, data, fields) => {
+    var sql = `UPDATE client SET name = ?, last_time_date = ?, phone = ? WHERE id = ?;`;
+    mysql.query(sql, [name, last_time_date, phone, id], (error, data, fields) => {
       if (error) {
         res.status(500);
         res.send(error.message);

@@ -4,6 +4,7 @@ import Clients from './components/Clients';
 import Login from './components/Login';
 import Cars from './components/Cars';
 import CarHistory from './components/CarHistory';
+import AllCars from './components/AllCars';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/clients" element={<Clients />} />
           <Route path="/clients/:id" element={<Cars />} />
           <Route path="/clients/:id/:carId" element={<CarHistory />} />
+          <Route path="/carros" element={<AllCars />} />
           
         </Routes>
       </BrowserRouter>

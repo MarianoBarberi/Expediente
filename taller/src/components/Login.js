@@ -6,7 +6,10 @@ const Login = () => {
     <div>
       <h2>Inicio</h2>
       <button>
-        <a href="/clients">Login</a>
+        <a href="/clients">Clientes</a>
+      </button>
+      <button>
+      <a href="/carros">Carros</a>
       </button>
     </div>
   );

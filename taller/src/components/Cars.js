@@ -12,14 +12,38 @@ const Cars = () => {
     name: '',
     year: '',
     color: '',
+    last_time_date: new Date().toISOString().split('T')[0],
     km: '',
-    comments: ''
+    comments: '',
+    isInTaller: false
   });
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('');
   const [selectedClient, setSelectedClient] = useState(null);
-
-
+  
+  const fetchData = async () => {
+    try {
+      const [carsResponse, clientNameResponse] = await Promise.all([
+        fetch(`http://localhost:5000/api/getAllCarsOfClient/${id}`),
+        fetch(`http://localhost:5000/api/getClientName/${id}`)
+      ]);
+  
+      const [carsResult, clientNameResult] = await Promise.all([
+        carsResponse.json(),
+        clientNameResponse.json()
+      ]);
+  
+      setData(carsResult);
+      setClientName(clientNameResult.client[0].name);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+  
   const handleAdd = () => {
     setModalType('add');
     setModalOpen(true);
@@ -34,8 +58,10 @@ const Cars = () => {
       name: car.name,
       year: car.year_of_car,
       color: car.color,
+      last_time_date: new Date(car.last_time_date).toISOString().split('T')[0],
       km: car.km,
-      comments: car.comments
+      comments: car.comments,
+      isInTaller: car.isInTaller
     });
   };
 
@@ -43,14 +69,7 @@ const Cars = () => {
     setModalType('delete');
     setSelectedClient(carId);
     setModalOpen(true);
-    const car = data.cars.find((c) => c.id === carId);
-    setNewCar({
-      name: car.name,
-      year: car.year_of_car,
-      color: car.color,
-      km: car.km,
-      comments: car.comments
-    });
+    setNewCar(data.cars.find((c) => c.id === carId));    
   };
 
   const handleCloseModal = () => {
@@ -61,8 +80,10 @@ const Cars = () => {
       name: '',
       year: '',
       color: '',
+      last_time_date: new Date().toISOString().split('T')[0],
       km: '',
-      comments: ''
+      comments: '',
+      isInTaller: false
     });
   };
 
@@ -79,9 +100,11 @@ const Cars = () => {
               name: newCar.name, 
               year_of_car: newCar.year, 
               color: newCar.color, 
+              last_time_date: newCar.last_time_date,
               km: newCar.km, 
               comments: newCar.comments, 
-              client_id: id
+              client_id: id,
+              isInTaller: newCar.isInTaller
             }),
           });
   
@@ -107,9 +130,11 @@ const Cars = () => {
               name: newCar.name, 
               year_of_car: newCar.year, 
               color: newCar.color, 
+              last_time_date: newCar.last_time_date,
               km: newCar.km, 
               comments: newCar.comments, 
-              client_id: id
+              client_id: id,
+              isInTaller: newCar.isInTaller
             }),
           });
   
@@ -147,28 +172,6 @@ const Cars = () => {
   };
   
 
-  const fetchData = async () => {
-    try {
-      const [carsResponse, clientNameResponse] = await Promise.all([
-        fetch(`http://localhost:5000/api/getAllCarsOfClient/${id}`),
-        fetch(`http://localhost:5000/api/getClientName/${id}`)
-      ]);
-
-      const [carsResult, clientNameResult] = await Promise.all([
-        carsResponse.json(),
-        clientNameResponse.json()
-      ]);
-
-      setData(carsResult);
-      setClientName(clientNameResult.client[0].name);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [id]);
 
   const { searchTerm, handleSearch, filteredData } = useSearch(data ? data.cars : [], 'name');
 
@@ -204,10 +207,10 @@ const Cars = () => {
                 <th>Nombre</th>
                 <th>Año</th>
                 <th>Color</th>
-                <th>Kilometraje</th>
+                <th>Km</th>
                 <th>Última Fecha</th>
                 <th>Comentarios</th>
-                <th colSpan="2" className='center'>Acciones</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -219,8 +222,10 @@ const Cars = () => {
                   <td><a href={`/clients/${id}/${car.id}`} className='link'>{car.km}</a></td>
                   <td><a href={`/clients/${id}/${car.id}`} className='link'>{new Date(car.last_time_date).toLocaleDateString()}</a></td>
                   <td><a href={`/clients/${id}/${car.id}`} className='link'>{car.comments}</a></td>
-                  <td className='center'><button className='edtBtn' onClick={() => handleEdit(car.id)}>Editar</button></td>
-                  <td className='center'><button className='dltBtn' onClick={() => handleDelete(car.id)}>X</button></td>
+                  <td className='center'>
+                    <button className='edtBtn' onClick={() => handleEdit(car.id)}><img src="/edit.svg" alt="Edit" /></button>
+                    <button className='dltBtn' onClick={() => handleDelete(car.id)}><img src="/delete.svg" alt="Delete"/></button>
+                    </td>
                 </tr>
               ))}
             </tbody>
@@ -230,11 +235,22 @@ const Cars = () => {
         {isModalOpen && (
           <div className="modal">
             <div className="modal-content">
-              <div className='modalTitle'>
-                <button className='dltBtn dltBtn2' onClick={handleCloseModal}>X</button>
-                {modalType === 'add' && <h2>Añadir Cliente</h2>}
+              <div className='modalTitle cars'>
+                <button className='backBtn' onClick={handleCloseModal}><img src="/back.svg" alt="Back"/></button>
+                {modalType === 'add' && <h2>Añadir Carro</h2>}
                 {modalType === 'edit' && <h2>Editar {newCar.name}</h2>}
                 {modalType === 'delete' && <h2>Eliminar {newCar.name}</h2>}
+                {modalType !== 'delete' && (
+                  <>
+                  <input
+                    type="checkbox"
+                    placeholder="Esta en taller"
+                    checked={newCar.isInTaller}
+                    onChange={(e) => setNewCar({ ...newCar, isInTaller: e.target.checked })}
+                    className='check'
+                  />
+                  </>
+                )}
               </div>
               {modalType !== 'delete' && (
                 <>
@@ -255,6 +271,12 @@ const Cars = () => {
                 placeholder="Color" 
                 value={newCar.color} 
                 onChange={(e) => setNewCar({ ...newCar, color: e.target.value })} 
+              />
+              <input 
+                type="date" 
+                placeholder="Última Fecha" 
+                value={newCar.last_time_date} 
+                onChange={(e) => setNewCar({ ...newCar, last_time_date: e.target.value })}
               />
               <input 
                 type="text" 

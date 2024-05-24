@@ -18,6 +18,24 @@ class MainController {
     });
   }
 
+  async getAllCars(req, res) {
+    console.log("Get all cars");
+    var sql = `CALL GetAllCars();`;
+    mysql.query(sql, (error, data, fields) => {
+      if (error) {
+        res.status(500);
+        res.send(error.message);
+      } else {
+        console.log(data);
+        var cars = data[0];
+        res.json({
+          cars,
+        });
+      }
+    }
+    );
+  }
+
   async getCar(req, res) {
     const { id } = req.params;
     console.log("Get car");
@@ -55,10 +73,10 @@ class MainController {
   }
 
   async addCar(req, res) {
-    const { name, year_of_car, color, km, comments, client_id } = req.body;
+    const { name, year_of_car, color, km, last_time_date, comments, client_id, isInTaller } = req.body;
     console.log("Add car");
-    var sql = `INSERT INTO cars (name, year_of_car, color, km, comments, client_id) VALUES (?, ?, ?, ?, ?, ?);`;
-    mysql.query(sql, [name, year_of_car, color, km, comments, client_id], (error, data, fields) => {
+    var sql = `INSERT INTO cars (name, year_of_car, color, km, last_time_date, comments, client_id, isInTaller) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+    mysql.query(sql, [name, year_of_car, color, km, last_time_date, comments, client_id, isInTaller], (error, data, fields) => {
       if (error) {
         res.status(500);
         res.send(error.message);
@@ -74,10 +92,10 @@ class MainController {
 
   async editCar(req, res) {
     const { id } = req.params;
-    const { name, year_of_car, color, km, comments, client_id } = req.body;
+    const { name, year_of_car, color, km, last_time_date, comments, client_id, isInTaller } = req.body;
     console.log("Edit car");
-    var sql = `UPDATE cars SET name = ?, year_of_car = ?, color = ?, km = ?, comments = ?, client_id = ? WHERE id = ?;`;
-    mysql.query(sql, [name, year_of_car, color, km, comments, client_id, id], (error, data, fields) => {
+    var sql = `UPDATE cars SET name = ?, year_of_car = ?, color = ?, km = ?, last_time_date = ?, comments = ?, client_id = ?, isInTaller = ? WHERE id = ?;`;
+    mysql.query(sql, [name, year_of_car, color, km, last_time_date, comments, client_id, isInTaller, id], (error, data, fields) => {
       if (error) {
         res.status(500);
         res.send(error.message);

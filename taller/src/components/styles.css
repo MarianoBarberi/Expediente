@@ -83,7 +83,6 @@
   .dltBtn{
     background-color: #f44336;
     color: white;
-    padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -97,10 +96,10 @@
   .edtBtn{
     background-color: #008CBA;
     color: white;
-    padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    margin-bottom: 3px;
   }
   
   .edtBtn:hover {
@@ -127,6 +126,7 @@
     height: 100%;
     text-decoration: none;
     color: black;
+    cursor: pointer;
   }
 
   .modal{
@@ -158,13 +158,73 @@
     margin-bottom: 10px;
   }
 
-  .dltBtn2{
-    width: 10%;
-    height: fit-content;
-    margin-right:  20px;
-  }
-
+  
   .modalTitle{
     display: flex;
     align-items: center;
+    text-align: center;
   }
+
+  .cars{
+    justify-content: space-between;
+  }
+
+  .check{
+    width: 20px;
+    height: 20px;
+  }
+  
+  .backBtn{
+    margin-right:  20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 40px;
+  }
+
+  .navigation {
+    width: fit-content;
+    display: flex;
+  }
+  
+  .navigationTitle {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 0;
+    border-radius: 15px 15px 0px 0px;
+    cursor: pointer;
+  }
+
+  .navigationTitle.active {
+    background-color: #4b4b4b;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+
+  .backBtn img{
+    width:100%;
+  }
+
+@media (max-width: 721px) {
+  :root{
+    font-size: 10px;
+  }
+
+  .edtBtn, .dltBtn, .addBtn{
+    font-size: 10px;
+  }
+
+  .backBtn{
+    margin-right: 5px;
+  }
+
+  .search-input{
+    width: 65%;
+  }
+}

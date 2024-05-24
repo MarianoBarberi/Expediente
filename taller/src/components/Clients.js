@@ -9,6 +9,7 @@ const Clients = () => {
   const [modalType, setModalType] = useState('');
   const [newClientName, setNewClientName] = useState('');
   const [newClientLastTimeDate, setNewClientLastTimeDate] = useState(new Date().toISOString().split('T')[0]);
+  const [newPhone, setNewPhone] = useState('');
 
   const fetchData = async () => {
     try {
@@ -34,6 +35,7 @@ const Clients = () => {
     setModalOpen(true);
     const client = data.clients.find((c) => c.id === clientId);
     setNewClientName(client.name);
+    setNewPhone(client.phone);
     setNewClientLastTimeDate(new Date(client.last_time_date).toISOString().split('T')[0]);
   };
 
@@ -49,6 +51,7 @@ const Clients = () => {
     setSelectedClient(null);
     setModalType('');
     setNewClientName('');
+    setNewPhone('');
     setNewClientLastTimeDate(new Date().toISOString().split('T')[0]);
   };
 
@@ -61,7 +64,7 @@ const Clients = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: newClientName, last_time_date: newClientLastTimeDate }),
+            body: JSON.stringify({ name: newClientName, last_time_date: newClientLastTimeDate, phone: newPhone}),
           });
 
           if (!response.ok) {
@@ -82,7 +85,7 @@ const Clients = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: newClientName, last_time_date: newClientLastTimeDate }),
+            body: JSON.stringify({ name: newClientName, last_time_date: newClientLastTimeDate, phone: newPhone}),
           });
 
           if (!response.ok) {
@@ -152,10 +155,9 @@ const Clients = () => {
           <thead>
             <tr>
               <th>Nombre</th>
+              <th>Teléfono</th>
               <th>Última Fecha</th>
-              <th colSpan="2" className="center">
-                Acciones
-              </th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -168,17 +170,21 @@ const Clients = () => {
                 </td>
                 <td>
                   <a href={`/clients/${client.id}`} className="link">
+                    {client.phone}
+                  </a>
+                </td>
+                <td>
+                  <a href={`/clients/${client.id}`} className="link">
                     {new Date(client.last_time_date).toLocaleDateString()}
                   </a>
                 </td>
                 <td className="center">
                   <button className="edtBtn" onClick={() => handleEdit(client.id)}>
-                    Editar
+                  <img src="/edit.svg" alt="Edit"/>
                   </button>
-                </td>
-                <td className="center">
+                
                   <button className="dltBtn" onClick={() => handleDelete(client.id)}>
-                    X
+                  <img src="/delete.svg" alt="Delete"/>
                   </button>
                 </td>
               </tr>
@@ -191,8 +197,8 @@ const Clients = () => {
         <div className="modal">
           <div className="modal-content">
             <div className="modalTitle">
-              <button className="dltBtn dltBtn2" onClick={handleCloseModal}>
-                X
+              <button className="backBtn" onClick={handleCloseModal}>
+              <img src="/back.svg" alt="Back"/>
               </button>
               {modalType === 'add' && <h2>Añadir Cliente</h2>}
               {modalType === 'edit' && <h2>Editar {newClientName}</h2>}
@@ -205,6 +211,12 @@ const Clients = () => {
                   placeholder="Nombre del Cliente"
                   value={newClientName}
                   onChange={(e) => setNewClientName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Teléfono"
+                  value={newPhone}
+                  onChange={(e) => setNewPhone(e.target.value)}
                 />
                 <input
                   type="date"
