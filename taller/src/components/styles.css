@@ -224,6 +224,22 @@
     font-size: 10px;
   }
 
+  .all{
+    width: 99%;
+  }
+
+  .search-container{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .titleDiv{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .backBtn{
     margin-right: 5px;
   }
