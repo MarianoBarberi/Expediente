@@ -1,18 +1,22 @@
-import React, { createContext, useState, useContext } from 'react';
+// AuthContext.js
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  const login = () => {
-    // Perform login logic here, set isLoggedIn to true if successful
+  const [token, setToken] = useState(null);
+
+  const login = (token) => {
+    setToken(token);
     setIsLoggedIn(true);
+    localStorage.setItem('token', token); // Store token in local storage
   };
-  
+
   const logout = () => {
-    // Perform logout logic here, set isLoggedIn to false
+    setToken(null);
     setIsLoggedIn(false);
+    localStorage.removeItem('token'); // Remove token from local storage
   };
 
   return (

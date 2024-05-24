@@ -10,6 +10,9 @@ import AllCars from './components/AllCars';
 function App() {
   const { isLoggedIn } = useAuth();
 
+  console.log('isLoggedIn:', isLoggedIn);
+  console.log('localStorage.getItem:', localStorage.getItem('token'));
+
   return (
     <div className="App">
       <BrowserRouter>

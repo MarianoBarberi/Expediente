@@ -1,4 +1,3 @@
-const { use } = require("js-joda");
 const mysql = require("../database/db");
 
 class UserController {
@@ -13,14 +12,19 @@ class UserController {
             } else {
                 console.log(data);
                 var user = data[0];
-                const token ='1234567890';
-                res.json({
-                    token
-                });
+                if (user) {
+                    const token = "1234567890";
+                    res.json({
+                        token,
+                    });
+                } else {
+                    res.status(401);
+                    res.send("Invalid username or password");
+                }
             }
         });
     }
-  }
+}
 
 const userController = new UserController();
 module.exports = userController;

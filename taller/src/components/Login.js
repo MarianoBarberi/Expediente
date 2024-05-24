@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,6 +11,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      setError(null); // Clear any previous errors
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
         headers: {
@@ -18,22 +21,24 @@ const Login = () => {
       });
   
       if (response.ok) {
-        // Assuming your backend returns a token upon successful login
         const data = await response.json();
         if (data.token) {
-          // Call login with the token
           login(data.token);
+          navigate('/clients');
         } else {
           setError('Token not provided by the server');
         }
-      } else {
+      } else if (response.status === 401) {
         setError('Invalid username or password');
+      } else {
+        setError('Something went wrong. Please try again later.');
       }
     } catch (error) {
       console.error('Login failed:', error);
       setError('Login failed. Please try again later.');
     }
   };
+  
   
 
   return (
