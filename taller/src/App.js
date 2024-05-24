@@ -14,12 +14,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {!isLoggedIn && <Route path="/" element={<Login />} />}
-          {isLoggedIn && <Route path="/clients" element={<Clients />} />}
-          {isLoggedIn && <Route path="/clients/:id" element={<Cars />} />}
-          {isLoggedIn && <Route path="/clients/:id/:carId" element={<CarHistory />} />}
-          {isLoggedIn && <Route path="/carros" element={<AllCars />} />}
-          {!isLoggedIn && <Route to="/" />}
+          <Route path="/" element={<Login />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/clients/:id" element={<Cars />} />
+          <Route path="/clients/:id/:carId" element={<CarHistory />} />
+          <Route path="/carros" element={<AllCars />} />
         </Routes>
       </BrowserRouter>
     </div>
