@@ -3,15 +3,15 @@ const dbConfig = require("../config/db.config.js");
 
 // Create a connection pool
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  user: process.env.DB_USER,
+  // host: process.env.DB_HOST,
+  // database: process.env.DB_NAME,
+  // password: process.env.DB_PASSWORD,
+  // user: process.env.DB_USER,
 
-  // host: dbConfig.HOST,
-  // user: dbConfig.USER,
-  // password: dbConfig.PASSWORD,
-  // database: dbConfig.DB
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB
 });
 
 // Get a connection from the pool

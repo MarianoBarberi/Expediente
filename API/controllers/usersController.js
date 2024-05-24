@@ -1,23 +1,24 @@
+const { use } = require("js-joda");
 const mysql = require("../database/db");
 
 class UserController {
     async loginUser(req, res) {
-      const { username, password } = req.body;
-      if (!username || !password) {
-        return res.status(400).json({ error: 'Username and password are required' });
-      }
-  
-      try {
-        const [rows, fields] = await mysql.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password]);
-        if (rows.length === 0) {
-          return res.status(401).json({ error: 'Invalid username or password' });
-        }
-        const token = 'your_token'; // Generate a token here or use any authentication mechanism
-        res.json({ message: 'Login successful', token });
-      } catch (error) {
-        console.error('Error logging in:', error);
-        res.status(500).json({ error: 'Internal server error' });
-      }
+        const { username, password } = req.body;
+        console.log("Login user");
+        var sql = `SELECT * FROM users WHERE username = ? AND password = ?;`;
+        mysql.query(sql, [username, password], (error, data, fields) => {
+            if (error) {
+                res.status(500);
+                res.send(error.message);
+            } else {
+                console.log(data);
+                var user = data[0];
+                const token ='1234567890';
+                res.json({
+                    token
+                });
+            }
+        });
     }
   }
 
