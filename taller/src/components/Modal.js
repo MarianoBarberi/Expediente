@@ -3,7 +3,7 @@ import React from 'react';
 const Modal = ({ type, clientId, onClose, data }) => {
   const handleAdd = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/addClient', {
+      const response = await fetch('https://expediente.onrender.com/api/addClient', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const Modal = ({ type, clientId, onClose, data }) => {
 
   const handleEdit = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/editClient/${clientId}`, {
+      const response = await fetch(`https://expediente.onrender.com/api/editClient/${clientId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const Modal = ({ type, clientId, onClose, data }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/deleteClient/${clientId}`, {
+      const response = await fetch(`https://expediente.onrender.com/api/deleteClient/${clientId}`, {
         method: 'DELETE',
       });
 

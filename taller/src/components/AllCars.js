@@ -69,7 +69,7 @@ const AllCars = () => {
       switch (modalType) {
         case 'add':
           try {
-            const response = await fetch('http://localhost:5000/api/addCar', {
+            const response = await fetch('https://expediente.onrender.com/api/addCar', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const AllCars = () => {
           break;
         case 'edit':
           try {
-            const response = await fetch(`http://localhost:5000/api/editCar/${selectedClient}`, {
+            const response = await fetch(`https://expediente.onrender.com/api/editCar/${selectedClient}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const AllCars = () => {
           break;
         case 'delete':
           try {
-            const response = await fetch(`http://localhost:5000/api/deleteCar/${selectedClient}`, {
+            const response = await fetch(`https://expediente.onrender.com/api/deleteCar/${selectedClient}`, {
               method: 'DELETE',
             });
     
@@ -153,7 +153,7 @@ const AllCars = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/getAllCars');
+            const response = await fetch('https://expediente.onrender.com/api/getAllCars');
             const result = await response.json();
             setData(result);
         } catch (error) {

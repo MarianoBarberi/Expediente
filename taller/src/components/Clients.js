@@ -13,7 +13,7 @@ const Clients = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/getAllClients');
+      const response = await fetch('https://expediente.onrender.com/api/getAllClients');
       const result = await response.json();
       setData(result);
     } catch (error) {
@@ -59,7 +59,7 @@ const Clients = () => {
     switch (modalType) {
       case 'add':
         try {
-          const response = await fetch('http://localhost:5000/api/addClient', {
+          const response = await fetch('https://expediente.onrender.com/api/addClient', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const Clients = () => {
         break;
       case 'edit':
         try {
-          const response = await fetch(`http://localhost:5000/api/editClient/${selectedClient}`, {
+          const response = await fetch(`https://expediente.onrender.com/api/editClient/${selectedClient}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const Clients = () => {
         break;
       case 'delete':
         try {
-          const response = await fetch(`http://localhost:5000/api/deleteClient/${selectedClient}`, {
+          const response = await fetch(`https://expediente.onrender.com/api/deleteClient/${selectedClient}`, {
             method: 'DELETE',
           });
 

@@ -24,8 +24,8 @@ const Cars = () => {
   const fetchData = async () => {
     try {
       const [carsResponse, clientNameResponse] = await Promise.all([
-        fetch(`http://localhost:5000/api/getAllCarsOfClient/${id}`),
-        fetch(`http://localhost:5000/api/getClientName/${id}`)
+        fetch(`https://expediente.onrender.com/api/getAllCarsOfClient/${id}`),
+        fetch(`https://expediente.onrender.com/api/getClientName/${id}`)
       ]);
   
       const [carsResult, clientNameResult] = await Promise.all([
@@ -91,7 +91,7 @@ const Cars = () => {
     switch (modalType) {
       case 'add':
         try {
-          const response = await fetch('http://localhost:5000/api/addCar', {
+          const response = await fetch('https://expediente.onrender.com/api/addCar', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const Cars = () => {
         break;
       case 'edit':
         try {
-          const response = await fetch(`http://localhost:5000/api/editCar/${selectedClient}`, {
+          const response = await fetch(`https://expediente.onrender.com/api/editCar/${selectedClient}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const Cars = () => {
         break;
       case 'delete':
         try {
-          const response = await fetch(`http://localhost:5000/api/deleteCar/${selectedClient}`, {
+          const response = await fetch(`https://expediente.onrender.com/api/deleteCar/${selectedClient}`, {
             method: 'DELETE',
           });
   

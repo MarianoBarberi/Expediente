@@ -61,7 +61,7 @@ const CarHistory = () => {
     switch (modalType) {
       case 'add':
         try {
-          const response = await fetch('http://localhost:5000/api/addCarHistory', {
+          const response = await fetch('https://expediente.onrender.com/api/addCarHistory', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const CarHistory = () => {
         break;
       case 'edit':
         try {
-          await fetch(`http://localhost:5000/api/editCarHistory/${selectedCarHistory}`, {
+          await fetch(`https://expediente.onrender.com/api/editCarHistory/${selectedCarHistory}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const CarHistory = () => {
         break;
       case 'delete':
         try {
-          const response = await fetch(`http://localhost:5000/api/deleteCarHistory/${selectedCarHistory}`, {
+          const response = await fetch(`https://expediente.onrender.com/api/deleteCarHistory/${selectedCarHistory}`, {
             method: 'DELETE',
           });
 
@@ -128,9 +128,9 @@ const CarHistory = () => {
   const fetchData = async () => {
     try {
       const [carHistoryResponse, carNameResponse, clientNameResponse] = await Promise.all([
-        fetch(`http://localhost:5000/api/getAllCarHistoryOfCar/${carId}`).then(response => response.json()),
-        fetch(`http://localhost:5000/api/getCarName/${carId}`).then(response => response.json()),
-        fetch(`http://localhost:5000/api/getClientName/${id}`).then(response => response.json())
+        fetch(`https://expediente.onrender.com/api/getAllCarHistoryOfCar/${carId}`).then(response => response.json()),
+        fetch(`https://expediente.onrender.com/api/getCarName/${carId}`).then(response => response.json()),
+        fetch(`https://expediente.onrender.com/api/getClientName/${id}`).then(response => response.json())
       ]);
 
       setData(carHistoryResponse);
